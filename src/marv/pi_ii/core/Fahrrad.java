@@ -80,4 +80,20 @@ public class Fahrrad {
 
         return re;
     }
+
+    public int getFnr() {
+        return fnr;
+    }
+
+    public String getFbez() {
+        return fbez;
+    }
+
+    public double getTacho() {
+        return tacho;
+    }
+
+    public int getCrt() {
+        return crt;
+    }
 }

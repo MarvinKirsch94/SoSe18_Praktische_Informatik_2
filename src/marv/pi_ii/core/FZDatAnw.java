@@ -5,11 +5,12 @@ import java.util.ArrayList;
 
 public class FZDatAnw {
 
+    private static final String fileName = "/res/FAHR1.TXT";
     private static ArrayList<Fahrrad> radlist = new ArrayList<>();
 
     public static void main(String args[]) throws IOException {
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("/res/FAHR1.TXT")));
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
         BufferedReader brc = new BufferedReader(new InputStreamReader(System.in));
 
         while(true) {
@@ -58,13 +59,13 @@ public class FZDatAnw {
 
         int nr = 0;
         Fahrrad r = new Fahrrad(1, 1);
-        System.out.println("");
+        System.out.println("Enter csv for new entry: ");
         try {
             r.csv2Fahrrad(brc.readLine());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("");
+        System.out.println("Enter nr: ");
         try {
             nr = Integer.parseInt(brc.readLine());
         } catch (IOException e) {
@@ -78,7 +79,7 @@ public class FZDatAnw {
         BufferedReader brc = new BufferedReader(new InputStreamReader(System.in));
 
         int nr = 0;
-        System.out.println("");
+        System.out.println("Enter nr for delete: ");
         try {
             nr = Integer.parseInt(brc.readLine());
         } catch (IOException e) {
@@ -92,14 +93,14 @@ public class FZDatAnw {
         BufferedReader brc = new BufferedReader(new InputStreamReader(System.in));
 
         int nr = 0;
-        System.out.println("");
+        System.out.println("Enter nr of Fahrrad: ");
         try {
             nr = Integer.parseInt(brc.readLine());
         } catch (IOException e) {
             e.printStackTrace();
         }
         Fahrrad r = radlist.get(nr);
-        System.out.println("");
+        System.out.println("Enter csv with new Data: ");
         try {
             r.csv2Fahrrad(brc.readLine());
         } catch (IOException e) {
@@ -108,8 +109,25 @@ public class FZDatAnw {
         radlist.set(nr, r);
     }
 
-    public static void method4() {
+    public static void method4() throws IOException {
 
-        //todo datei mist noch erledigen siehe (4) auf blatt
+        BufferedReader brc = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Enter filename: ");
+
+        String fileNameSave = "";
+
+        try {
+            fileNameSave = brc.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        BufferedWriter bwc = new BufferedWriter(new FileWriter(fileNameSave));
+
+        for(Fahrrad f : radlist) {
+
+            bwc.append(f.getFnr() + ";" + f.getPreis() + ";" + f.getFbez() + ";" + f.getTacho() + "\n");
+        }
     }
 }
