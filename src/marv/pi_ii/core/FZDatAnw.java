@@ -134,5 +134,7 @@ public class FZDatAnw {
 
             bwc.append(f.getFnr() + ";" + f.getPreis() + ";" + f.getFbez() + ";" + f.getTacho() + "\n");
         }
+        bwc.flush();
+        bwc.close();
     }
 }
