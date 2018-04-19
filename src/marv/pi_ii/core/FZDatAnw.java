@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class FZDatAnw {
 
-    private static final String fileName = "/res/FAHR1.TXT";
+    private static final String fileName = "res/FAHR1.TXT";
     private static ArrayList<Fahrrad> radlist = new ArrayList<>();
 
     public static void main(String args[]) throws IOException {
@@ -32,24 +32,29 @@ public class FZDatAnw {
 
         //Menü
 
-        System.out.println("Menü\n" +
-                "(1)Anlegen und Einketteneines neuen Knotens zu einer gegebenen Position in die Liste\n" +
-                "(2)Löschen eines Knotens in der Liste\n" +
-                "(3)Ändern der Inhalte eines Knotens\n" +
-                "(4)Schreiben der Listenknoten in eine Datei\n");
-        switch(Integer.parseInt(brc.readLine())) {
-            case 1:
-                method1();
-                break;
-            case 2:
-                method2();
-                break;
-            case 3:
-                method3();
-                break;
-            case 4:
-                method4();
-                break;
+        for(int xy = 0; xy < 100; xy++) {
+            System.out.println("Menü\n" +
+                    "(1)Anlegen und Einketteneines neuen Knotens zu einer gegebenen Position in die Liste\n" +
+                    "(2)Löschen eines Knotens in der Liste\n" +
+                    "(3)Ändern der Inhalte eines Knotens\n" +
+                    "(4)Schreiben der Listenknoten in eine Datei\n");
+            switch (Integer.parseInt(brc.readLine())) {
+                case 1:
+                    method1();
+                    break;
+                case 2:
+                    method2();
+                    break;
+                case 3:
+                    method3();
+                    break;
+                case 4:
+                    method4();
+                    break;
+                default:
+                    System.exit(0);
+                    break;
+            }
         }
     }
 
