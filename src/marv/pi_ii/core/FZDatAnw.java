@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class FZDatAnw {
 
     private static final String fileName = "res/FAHR1.TXT";
-    private static ArrayList<Fahrrad> radlist = new ArrayList<>();
+    private static ArrayList<FahrradS> radlist = new ArrayList<>();
 
     public static void main(String args[]) throws IOException {
 
@@ -18,7 +18,7 @@ public class FZDatAnw {
             if(thisLine == null) {
                 break;
             }
-            Fahrrad r = new Fahrrad(1,1);
+            FahrradS r = new FahrradS(1,1);
             int err = r.csv2Fahrrad(thisLine);
             System.out.println(err == 1 ? r.fahrAus() + "\n" + "erfolgreich!\n" : (err > -5 ? r.fahrAus() + "\n" + "das " + err + "te element ist fehlerhaft!" : "\nFEHLERHAFTER DATENSATZ!"));
             if(err == 1) {
@@ -26,7 +26,7 @@ public class FZDatAnw {
             }
         }
         br.close();
-        for(Fahrrad a : radlist) {
+        for(FahrradS a : radlist) {
             System.out.print(a.fahrAus() + "\n");
         }
 
@@ -34,7 +34,7 @@ public class FZDatAnw {
 
         for(int xy = 0; xy < 100; xy++) {
             System.out.println("Menü\n" +
-                    "(1)Anlegen und Einketteneines neuen Knotens zu einer gegebenen Position in die Liste\n" +
+                    "(1)Anlegen und einketten eines neuen Knotens zu einer gegebenen Position in die Liste\n" +
                     "(2)Löschen eines Knotens in der Liste\n" +
                     "(3)Ändern der Inhalte eines Knotens\n" +
                     "(4)Schreiben der Listenknoten in eine Datei\n");
@@ -63,7 +63,7 @@ public class FZDatAnw {
         BufferedReader brc = new BufferedReader(new InputStreamReader(System.in));
 
         int nr = 0;
-        Fahrrad r = new Fahrrad(1, 1);
+        FahrradS r = new FahrradS(1, 1);
         System.out.println("Enter csv for new entry: ");
         try {
             r.csv2Fahrrad(brc.readLine());
@@ -98,13 +98,13 @@ public class FZDatAnw {
         BufferedReader brc = new BufferedReader(new InputStreamReader(System.in));
 
         int nr = 0;
-        System.out.println("Enter nr of Fahrrad: ");
+        System.out.println("Enter nr of FahrradS: ");
         try {
             nr = Integer.parseInt(brc.readLine());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Fahrrad r = radlist.get(nr);
+        FahrradS r = radlist.get(nr);
         System.out.println("Enter csv with new Data: ");
         try {
             r.csv2Fahrrad(brc.readLine());
@@ -130,7 +130,7 @@ public class FZDatAnw {
 
         BufferedWriter bwc = new BufferedWriter(new FileWriter(fileNameSave));
 
-        for(Fahrrad f : radlist) {
+        for(FahrradS f : radlist) {
 
             bwc.append(f.getFnr() + ";" + f.getPreis() + ";" + f.getFbez() + ";" + f.getTacho() + "\n");
         }
