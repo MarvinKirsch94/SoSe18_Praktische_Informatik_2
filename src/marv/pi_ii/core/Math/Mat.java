@@ -18,6 +18,7 @@ public class Mat {
 
     public Mat(BufferedReader br1) {
 
+        //einlesen der werte in arraylist pro zeile dann jeweils zeile(als arraylist) in arraylist speichen
         ArrayList<ArrayList<Integer>> rl = new ArrayList<>();
         while(true) {
             try {
@@ -27,51 +28,46 @@ public class Mat {
                     break;
                 }
                 String[] temp = thisLine.split(";");
-                ArrayList<Integer> ints = new ArrayList<>();
+                ArrayList<Integer> ints = new ArrayList<>(); //erzeugen der arraylist für die neue zeile
 
-                for (String s : temp) {
+                for (String s : temp) { //durchlaufen des String[] und in zeilen arraylist einfügen
                     ints.add(Integer.parseInt(s));
                 }
-                /*for(int i : ints) {
-                    System.out.println(i);
-                }
-                System.out.println("next");*/
-                rl.add(ints);
+                rl.add(ints); //zeile zu arraylist hinzufügen
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        for(ArrayList<Integer> tes : rl) {
+        for(ArrayList<Integer> tes : rl) { //test ob alle zeilen gleich lang sind
             if(tes.size() != rl.get(0).size())
-                this.crt = -1;
+                this.crt = -1; //falls nicht crt auf -1 setzen
         }
 
-        this.n = rl.size();
-        this.m = rl.get(0).size();
+        this.n = rl.size();//n setzen
+        this.m = rl.get(0).size();//m setzen
 
-        if(crt != -1) {
+        if(crt != -1) {//wenn falsch wird die matrix nicht befüllt
             //a[n][m]
             a = new int[this.n][this.m];
 
             int n = 0, m = 0;
-            for (ArrayList<Integer> intis : rl) {
+            for (ArrayList<Integer> intis : rl) {//befüllen der matrix mit doppelter foreach schleife hier könnte man eventuell for i schleife verwenden...
 
                 for (int i : intis) {
 
-                    //System.out.println("n" + n + "m" + m);
                     a[n][m] = i;
                     m++;
                 }
                 m=0;
                 n++;
             }
-            this.crt = 1;
+            this.crt = 1; //bei abschluss crt auf 1 setzen
         }
     }
 
     public boolean matAus(FileWriter fx) {
-
+        //einfaches druchlaufen von a per for each schleife schreiben der variablen
         try {
             for (int[] i : a) {
                 for (int x = 0; x < i.length; x++) {
@@ -99,28 +95,36 @@ public class Mat {
             end.crt = -3;
         }
         else {
-
-            end.n = this.n;
-            end.m = b.m;
-            end.a = new int[end.n][end.m];
-            for(int y = 0; y < end.n; y++) {
-                for(int x = 0; x < end.m; x++) {
-                    ArrayList<Integer> ma = new ArrayList<>();//m
-                    ArrayList<Integer> mb = new ArrayList<>();//n
-                    for(int m = 0; m < this.m; m++) {
-                        ma.add(this.a[y][m]);
+            try {
+                //setze eigenschaften der ergebnismatrix
+                end.n = this.n;
+                end.m = b.m;
+                end.a = new int[end.n][end.m];
+                //for - schleife zum durchlaufen der matrix
+                for (int y = 0; y < end.n; y++) {
+                    for (int x = 0; x < end.m; x++) {
+                        ArrayList<Integer> ma = new ArrayList<>();//m //arraylist zum schreiben der variablen der Matrix A
+                        ArrayList<Integer> mb = new ArrayList<>();//n //arraylist zum schreiben der variablen der Matrix B
+                        //beschreiben der arraylist A
+                        for (int m = 0; m < this.m; m++) {
+                            ma.add(this.a[y][m]);
+                        }
+                        //beschreiben der arraylist B
+                        for (int n = 0; n < b.n; n++) {
+                            mb.add(b.a[n][x]);
+                        }
+                        //variable für das ergebnis und wert für die zelle der ergebnismatrix
+                        int ev = 0;
+                        for (int t = 0; t < ma.size(); t++) {
+                            ev += ma.get(t) * mb.get(t); //rechnung der eigentlichen multiplikation
+                        } //die in der for schleife nun addiert wird
+                        end.a[y][x] = ev; //wert wird eingetragen
                     }
-                    for(int n = 0; n < b.n; n++) {
-                        mb.add(b.a[n][x]);
-                    }
-                    int ev = 0;
-                    for(int t = 0; t < ma.size(); t++) {
-                        ev += ma.get(t) * mb.get(t);
-                    }
-                    end.a[y][x] = ev;
                 }
+                end.crt = 1; //crt wird auf 1 gesetzt
+            } catch(Exception e) {
+                e.printStackTrace();
             }
-            end.crt = 1;
         }
         return end;
     }

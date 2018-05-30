@@ -7,7 +7,7 @@ import java.io.*;
  * Matrikelnr.: 11118687
  */
 public class MatAnw {
-    //kommentieren!
+
     private static BufferedReader br1;
     private static BufferedReader br2;
     private static FileWriter fx;
