@@ -36,10 +36,11 @@ public class FahrSetAnw {
         for (int xy = 0; xy < 100; xy++) {
             fs.tmenge = tmenge;
             System.out.println("Menü\n" +
-                    "(1)Anlegen und Einketteneines neuen Knotens zu einer gegebenen Position in die Liste\n" +
-                    "(2)Löschen eines Knotens in der Liste\n" +
-                    "(3)Ändern der Inhalte eines Knotens\n" +
-                    "(4)Schreiben der Listenknoten in eine Datei\n");
+                    "(1)Anlegen und Einfügen in der Menge\n" +
+                    "(2)Anzeigen der Menge\n" +
+                    "(3)Löschen eines Elementes aus der Menge\n" +
+                    "(4)Ändern eines Elements\n" +
+                    "(5)Schreiben der Elemente in eine Datei\n");
             switch (Integer.parseInt(brc.readLine())) {
                 case 1:
                     me1();
@@ -128,7 +129,7 @@ public class FahrSetAnw {
             e.printStackTrace();
             System.exit(0);
         }
-
+        //fehler im doppel fall beheben
         System.out.print(tfs.fahrAus());
         System.out.print("Enter new csv for FahrradS!");
 
@@ -145,7 +146,7 @@ public class FahrSetAnw {
         String fileNameSave = "";
 
         try {
-            fileNameSave = brc.readLine();
+            fileNameSave = "res/" + brc.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }

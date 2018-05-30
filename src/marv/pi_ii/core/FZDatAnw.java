@@ -90,7 +90,8 @@ public class FZDatAnw {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        radlist.remove(nr);
+
+        System.out.println(radlist.remove(nr));
     }
 
     public static void method3() {

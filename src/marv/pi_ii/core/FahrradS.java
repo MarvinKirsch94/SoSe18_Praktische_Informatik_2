@@ -1,6 +1,6 @@
 package marv.pi_ii.core;
 
-public class FahrradS implements Comparable {
+public class FahrradS implements Comparable<FahrradS> {
 
     private int fnr; //Fahrradnummer
     private double preis; //Anschaffungspreis des Fahrrads
@@ -98,16 +98,12 @@ public class FahrradS implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        FahrradS other = (FahrradS)o;
-
-        if(this.fnr == other.fnr) //&& this.fbez == other.fbez)
-            return 0;
-        else if(this.fnr < other.fnr) //&& this.fbez.compareTo(other.fbez))
-            return -1;
-        else if(this.fnr > other.fnr) //&& this.fbez > other.fbez)
-            return 1;
-
-        return -2;
+    public int compareTo(FahrradS f) {
+        int frnResult = Integer.compare(this.fnr, f.fnr);
+        if(frnResult==0) {
+            return this.fbez.compareTo(f.fbez);
+        } else {
+            return frnResult;
+        }
     }
 }

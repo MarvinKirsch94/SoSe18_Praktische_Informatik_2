@@ -14,6 +14,8 @@ public class Mat {
     private int a[][];
     private int n, m, crt = 0;
 
+    public Mat() {}
+
     public Mat(BufferedReader br1) {
 
         ArrayList<ArrayList<Integer>> rl = new ArrayList<>();
@@ -30,9 +32,12 @@ public class Mat {
                 for (String s : temp) {
                     ints.add(Integer.parseInt(s));
                 }
-
+                /*for(int i : ints) {
+                    System.out.println(i);
+                }
+                System.out.println("next");*/
                 rl.add(ints);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -42,24 +47,26 @@ public class Mat {
                 this.crt = -1;
         }
 
+        this.n = rl.size();
+        this.m = rl.get(0).size();
+
         if(crt != -1) {
             //a[n][m]
-            a = new int[rl.size()][rl.get(0).size()];
+            a = new int[this.n][this.m];
 
             int n = 0, m = 0;
             for (ArrayList<Integer> intis : rl) {
 
                 for (int i : intis) {
 
+                    //System.out.println("n" + n + "m" + m);
                     a[n][m] = i;
                     m++;
                 }
-
+                m=0;
                 n++;
             }
             this.crt = 1;
-            this.n = n+1;
-            this.m = m+1;
         }
     }
 
@@ -69,7 +76,7 @@ public class Mat {
             for (int[] i : a) {
                 for (int x = 0; x < i.length; x++) {
 
-                    fx.append(String.valueOf(x));
+                    fx.append(String.valueOf(i[x]));
                     if (x != i.length - 1) {
                         fx.append(";");
                     }
@@ -86,7 +93,7 @@ public class Mat {
 
     public Mat matMul(Mat b) {
 
-        Mat end = this;
+        Mat end = new Mat();
 
         if(this.m != b.n) {
             end.crt = -3;
