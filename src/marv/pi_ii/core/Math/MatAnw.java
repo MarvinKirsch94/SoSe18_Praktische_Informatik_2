@@ -8,6 +8,7 @@ import java.io.*;
  */
 public class MatAnw {
 
+    //ergebnis wird in EMAT... gespeichert
     private static BufferedReader br1;
     private static BufferedReader br2;
     private static FileWriter fx;
