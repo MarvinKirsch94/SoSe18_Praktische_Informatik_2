@@ -1,0 +1,8 @@
+1;200.92;Rennrad;123.4
+2;100.13;Fahrrad;103.4
+3;260.12;Tandem;23.8
+4;200.13;Elektrofahrrad;173.0
+5;400.14;Rennrad;134.1
+6;219.12;Fahrrad;123.9
+7;600.12;Rennrad;128.5
+8;230.52;Crouser;168.5
