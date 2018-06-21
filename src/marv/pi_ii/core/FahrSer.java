@@ -1,6 +1,8 @@
 package marv.pi_ii.core;
 
-public class FahrradS implements Comparable<FahrradS> {
+import java.io.Serializable;
+
+public class FahrSer implements Comparable<FahrSer>, Serializable {
 
     private int fnr; //Fahrradnummer
     private double preis; //Anschaffungspreis des Fahrrads
@@ -8,7 +10,7 @@ public class FahrradS implements Comparable<FahrradS> {
     private double tacho; //Tachometerstand
     private int crt; //Kontrollwert
 
-    public FahrradS(int efnr, double etacho) {
+    public FahrSer(int efnr, double etacho) {
 
         this.fnr = efnr;
         this.tacho = etacho;
@@ -98,7 +100,7 @@ public class FahrradS implements Comparable<FahrradS> {
     }
 
     @Override
-    public int compareTo(FahrradS f) {
+    public int compareTo(FahrSer f) {
         int frnResult = Integer.compare(this.fnr, f.fnr);
         if(frnResult==0) {
             return this.fbez.compareTo(f.fbez);

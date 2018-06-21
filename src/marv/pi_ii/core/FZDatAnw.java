@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class FZDatAnw {
 
     private static final String fileName = "res/FAHR1.TXT";
-    private static ArrayList<FahrradS> radlist = new ArrayList<>();
+    private static ArrayList<FahrSer> radlist = new ArrayList<>();
 
     public static void main(String args[]) throws IOException {
 
@@ -18,7 +18,7 @@ public class FZDatAnw {
             if(thisLine == null) {
                 break;
             }
-            FahrradS r = new FahrradS(1,1);
+            FahrSer r = new FahrSer(1,1);
             int err = r.csv2Fahrrad(thisLine);
             System.out.println(err == 1 ? r.fahrAus() + "\n" + "erfolgreich!\n" : (err > -5 ? r.fahrAus() + "\n" + "das " + err + "te element ist fehlerhaft!" : "\nFEHLERHAFTER DATENSATZ!"));
             if(err == 1) {
@@ -26,7 +26,7 @@ public class FZDatAnw {
             }
         }
         br.close();
-        for(FahrradS a : radlist) {
+        for(FahrSer a : radlist) {
             System.out.print(a.fahrAus() + "\n");
         }
 
@@ -63,7 +63,7 @@ public class FZDatAnw {
         BufferedReader brc = new BufferedReader(new InputStreamReader(System.in));
 
         int nr = 0;
-        FahrradS r = new FahrradS(1, 1);
+        FahrSer r = new FahrSer(1, 1);
         System.out.println("Enter csv for new entry: ");
         try {
             r.csv2Fahrrad(brc.readLine());
@@ -99,13 +99,13 @@ public class FZDatAnw {
         BufferedReader brc = new BufferedReader(new InputStreamReader(System.in));
 
         int nr = 0;
-        System.out.println("Enter nr of FahrradS: ");
+        System.out.println("Enter nr of FahrSer: ");
         try {
             nr = Integer.parseInt(brc.readLine());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        FahrradS r = radlist.get(nr);
+        FahrSer r = radlist.get(nr);
         System.out.println("Enter csv with new Data: ");
         try {
             r.csv2Fahrrad(brc.readLine());
@@ -131,7 +131,7 @@ public class FZDatAnw {
 
         BufferedWriter bwc = new BufferedWriter(new FileWriter(fileNameSave));
 
-        for(FahrradS f : radlist) {
+        for(FahrSer f : radlist) {
 
             bwc.append(f.getFnr() + ";" + f.getPreis() + ";" + f.getFbez() + ";" + f.getTacho() + "\n");
         }

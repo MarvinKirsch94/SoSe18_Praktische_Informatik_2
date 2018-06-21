@@ -10,7 +10,7 @@ import java.util.TreeSet;
  */
 public class FahrSet {
 
-    TreeSet<FahrradS> tmenge;
+    TreeSet<FahrSer> tmenge;
 
     public int dat2tset(BufferedReader br1) throws IOException {
 
@@ -20,7 +20,7 @@ public class FahrSet {
             if (thisLine == null) {
                 break;
             }
-            FahrradS r = new FahrradS(1, 1);
+            FahrSer r = new FahrSer(1, 1);
             int err = r.csv2Fahrrad(thisLine);
             System.out.println(err == 1 ? r.fahrAus() + "\n" + "erfolgreich!\n" : (err > -5 ? r.fahrAus() + "\n" + "das " + err + "te element ist fehlerhaft!" : "\nFEHLERHAFTER DATENSATZ!"));
             if (err == 1) {
@@ -41,7 +41,7 @@ public class FahrSet {
 
         String[] s = new String[tmenge.size()];
         int c = 0;
-        for(FahrradS f : tmenge) {
+        for(FahrSer f : tmenge) {
             s[c] = (f.getFnr() + ";" + f.getPreis() + ";" + f.getFbez() + ";" + f.getTacho() + "\n");
             c++;
         }

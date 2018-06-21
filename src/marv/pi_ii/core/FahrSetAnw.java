@@ -10,7 +10,7 @@ import java.util.TreeSet;
 public class FahrSetAnw {
 
     private static final String fileName = "res/FAHR1.TXT";
-    private static TreeSet<FahrradS> tmenge;
+    private static TreeSet<FahrSer> tmenge;
 
     public static void main(String[] args) throws IOException {
 
@@ -20,7 +20,7 @@ public class FahrSetAnw {
 
         //c1
         FahrSet fs = new FahrSet();
-        fs.tmenge = new TreeSet<FahrradS>();
+        fs.tmenge = new TreeSet<FahrSer>();
 
         //c2
         BufferedReader br1 = new BufferedReader(new FileReader(fileName));
@@ -68,7 +68,7 @@ public class FahrSetAnw {
         BufferedReader brc = new BufferedReader(new InputStreamReader(System.in));
 
         int nr = 0;
-        FahrradS r = new FahrradS(1, 1);
+        FahrSer r = new FahrSer(1, 1);
         System.out.println("Enter csv for new entry: ");
         try {
             r.csv2Fahrrad(brc.readLine());
@@ -81,7 +81,7 @@ public class FahrSetAnw {
 
     private static void me2() {
 
-        for (FahrradS fs : tmenge) {
+        for (FahrSer fs : tmenge) {
             System.out.print(fs.fahrAus());
         }
     }
@@ -90,12 +90,12 @@ public class FahrSetAnw {
 
         BufferedReader brc = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.print("Enter fnr from FahrradS you want to remove!\n");
+        System.out.print("Enter fnr from FahrSer you want to remove!\n");
         int fnr = Integer.parseInt(brc.readLine());
 
-        FahrradS tfs = null;
+        FahrSer tfs = null;
 
-        for(FahrradS fs : tmenge) {
+        for(FahrSer fs : tmenge) {
             if(fs.getFnr() == fnr) {
                 tfs = fs;
             }
@@ -112,12 +112,12 @@ public class FahrSetAnw {
 
         BufferedReader brc = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.print("Enter fnr from FahrradS you want to change!\n");
+        System.out.print("Enter fnr from FahrSer you want to change!\n");
         int fnr = Integer.parseInt(brc.readLine());
 
-        FahrradS tfs = null;
+        FahrSer tfs = null;
 
-        for(FahrradS fs : tmenge) {
+        for(FahrSer fs : tmenge) {
             if(fs.getFnr() == fnr) {
                 tfs = fs;
             }
@@ -131,7 +131,7 @@ public class FahrSetAnw {
         }
         //fehler im doppel fall beheben
         System.out.print(tfs.fahrAus());
-        System.out.print("Enter new csv for FahrradS!");
+        System.out.print("Enter new csv for FahrSer!");
 
         tfs.csv2Fahrrad(brc.readLine());
         tmenge.add(tfs);
@@ -153,7 +153,7 @@ public class FahrSetAnw {
 
         BufferedWriter bwc = new BufferedWriter(new FileWriter(fileNameSave));
 
-        for(FahrradS fs : tmenge) {
+        for(FahrSer fs : tmenge) {
 
             bwc.append(fs.getFnr() + ";" + fs.getPreis() + ";" + fs.getFbez() + ";" + fs.getTacho() + "\n");
         }
