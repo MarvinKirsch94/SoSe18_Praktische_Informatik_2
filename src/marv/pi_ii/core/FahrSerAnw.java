@@ -123,6 +123,7 @@ public class FahrSerAnw {
         }
 
         radliste.add(nr, r);
+        System.out.println("Added Element!");
     }
 
     private static void loeschen() throws IOException {
@@ -145,6 +146,8 @@ public class FahrSerAnw {
         } catch(Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println("Deleted..");
     }
 
     private static void aendern() throws IOException {

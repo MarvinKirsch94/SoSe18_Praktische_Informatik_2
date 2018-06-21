@@ -130,13 +130,16 @@ public class Mat implements addierbar{
 
     @Override
     public double[][] matadd(double[][] x) {
-        double[][] er = x;
+        double[][] er = x.clone();
+
+        if(x.length != this.a.length || x[0].length != this.a[0].length) return null;
 
         int xc = 0;
         int yc = 0;
         try {
-            for (int[] i: this.a) {
-                for (int y: i) {
+            for (int[] i : this.a) {
+                xc = 0;
+                for (int y : i) {
                     er[yc][xc] = x[yc][xc] + (double)this.a[yc][xc];
                     xc++;
                 }
