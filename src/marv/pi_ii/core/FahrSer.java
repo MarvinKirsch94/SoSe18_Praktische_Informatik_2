@@ -33,6 +33,7 @@ public class FahrSer implements Comparable<FahrSer>, Serializable {
     }
 
     public int csv2Fahrrad(String ecsv) {
+        System.out.println("Starting csv2Fahrrad");
         String csv[] = ecsv.split(";");
         int err = 0;
         boolean wasTrue = false;

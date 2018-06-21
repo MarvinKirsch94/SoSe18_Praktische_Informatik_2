@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by Marvin Kirsch on 29.05.2018.
  * Matrikelnr.: 11118687
  */
-public class Mat {
+public class Mat implements addierbar{
 
     private int a[][];
     private int n, m, crt = 0;
@@ -126,5 +126,26 @@ public class Mat {
             }
         }
         return end;
+    }
+
+    @Override
+    public double[][] matadd(double[][] x) {
+        double[][] er = x;
+
+        int xc = 0;
+        int yc = 0;
+        try {
+            for (int[] i: this.a) {
+                for (int y: i) {
+                    er[yc][xc] = x[yc][xc] + (double)this.a[yc][xc];
+                    xc++;
+                }
+                yc++;
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return er;
     }
 }

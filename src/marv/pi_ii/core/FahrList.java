@@ -5,19 +5,22 @@ import java.util.LinkedList;
 
 public class FahrList {
 
-    private LinkedList<FahrSer> radliste;
-
+    LinkedList<FahrSer> radliste;
 
     //c1 einlesen der Knoten in die Liste aus der Datei die durch br1 (bufferedreader) bereitgestellt wird
     public int dat2Radliste(BufferedReader br1) throws IOException {
+        System.out.println("Starting read from data");
         int countCO = 0;
         radliste = new LinkedList<>();
         while (true) {
+            System.out.println("loop");
             String thisLine = br1.readLine();
             if (thisLine == null) {
                 break;
             }
+            System.out.println("FahrSer r init");
             FahrSer r = new FahrSer(1, 1);
+
             int err = r.csv2Fahrrad(thisLine);
             System.out.println(err == 1 ? r.fahrAus() + "\n" + "erfolgreich!\n" : (err > -5 ? r.fahrAus() + "\n" + "das " + err + "te element ist fehlerhaft!" : "\nFEHLERHAFTER DATENSATZ!"));
             if (err == 1) {
@@ -56,13 +59,16 @@ public class FahrList {
         while (true) {
             FahrSer fs = null;
             try {
-                fs = (FahrSer) or1.readObject();
-            } catch (IOException | ClassNotFoundException e) {
+                if(or1.available() == 0) break;
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-            if(fs == null) {
-                break;
+            try {
+                fs = (FahrSer) or1.readObject();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
             radliste.add(fs);
             c++;
         }
